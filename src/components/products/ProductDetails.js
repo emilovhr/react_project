@@ -24,7 +24,7 @@ export default function ProductDetails({
         <>
             <section className="overflow-hidden py-11 font-poppins mt-32">
                 <div className="max-w-6xl px-4 py-4 mx-auto lg:py-8 md:px-6">
-                    <h2 className="max-w-xl mt-2 mb-6 text-2xl font-bold dark:text-gray-400 md:text-4xl">
+                    <h2 className="max-w-xl mt-2 mb-6 text-2xl font-bold text-white md:text-4xl">
                         {product?.title}
                     </h2>
                     <div className="flex flex-wrap -mx-4">
@@ -104,7 +104,7 @@ export default function ProductDetails({
                                     >
                                         New
                                     </span>
-                                    <h2 className="max-w-xl mt-2 mb-6 text-2xl font-bold dark:text-gray-400 md:text-4xl">
+                                    <h2 className="max-w-xl mt-2 mb-6 text-2xl font-bold text-white md:text-4xl">
                                         {product?.category}
                                     </h2>
                                     <p className="max-w-md mb-8 text-gray-700 dark:text-gray-400">
