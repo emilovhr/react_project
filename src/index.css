@@ -1,3 +1,7 @@
+/*@tailwind base;*/
+/*@tailwind components;*/
+/*@tailwind utilities;*/
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -7,7 +11,79 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.sideNav {
+  height: 100%;
+  width: 200px;
+  padding: 2rem;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background-color: lightgray;
+  padding-top: 20px;
+}
+.sideNavChild {
+  height: 65%;
+  overflow-y: scroll;
+}
+
+.productList {
+  list-style: none;
+  text-align: left;
+}
+
+.cartBtn {
+  margin-bottom: 1rem
+}
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 10rem;
+  pointer-events: none;
+}
+
+.cartLogo {
+  height: 2rem;
+  color: white;
+}
+.cart-logo-align {
+  position: absolute;
+  right: 2rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #535761;
+  min-height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  width: 100%;
+  position: fixed;
+  top: 0
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
