@@ -152,7 +152,7 @@ export default function ProductDetails({
                                             onClick={() => {
                                                 let newCart = [...cart]
                                                 for (
-                                                    let i = 0;
+                                                    let i = 1;
                                                     i <= quantity;
                                                     i++
                                                 ) {
