@@ -132,6 +132,7 @@ export default function ProductDetails({
                                             dark:text-gray-400 dark:placeholder-gray-400 dark:bg-gray-900
                                             focus:outline-none text-md"
                                             placeholder="1"
+                                            min="1"
                                             value={quantity}
                                             onChange={(e) => {
                                                 setQuantity(e.target.value)
