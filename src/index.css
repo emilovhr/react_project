@@ -63,9 +63,11 @@ body {
 }
 
 .App-header {
+  background-color: #1b3659;
+  box-shadow:     inset 0 -3em 3em rgb(29, 54, 88),
+  0em 0.1em 1em rgb(105, 100, 100);
   padding: 2.2rem;
   z-index: 3;
-  background-color: #535761;
   min-height: 6vh;
   display: flex;
   flex-direction: column;
