@@ -54,6 +54,7 @@ body {
 .cart-logo-align {
   position: absolute;
   right: 2rem;
+  top: 1rem;
 }
 
 @media (prefers-reduced-motion: no-preference) {
