@@ -127,7 +127,10 @@ export default function ProductDetails({
                                     <div className="relative flex flex-row w-full h-10 mt-4 bg-transparent rounded-lg">
                                         <input
                                             type="number"
-                                            className="flex items-center w-full font-semibold text-center text-gray-700 placeholder-gray-700 bg-gray-300 outline-none dark:text-gray-400 dark:placeholder-gray-400 dark:bg-gray-900 focus:outline-none text-md"
+                                            className="flex items-center w-full font-semibold text-center
+                                            text-gray-700 placeholder-gray-700 bg-gray-300 outline-none
+                                            dark:text-gray-400 dark:placeholder-gray-400 dark:bg-gray-900
+                                            focus:outline-none text-md"
                                             placeholder="1"
                                             value={quantity}
                                             onChange={(e) => {
