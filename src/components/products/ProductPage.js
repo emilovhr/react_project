@@ -12,6 +12,7 @@ export default function ProductPage() {
     const [cart, setCart] = useState(() => {
         return JSON.parse(localStorage.getItem('cart')) ?? []
     })
+    const [quantity, setQuantity] = useState(1)
     const [isNavOpen, setIsNavOpen] = useState(true)
     const [cartTotalPrice, setCartTotalPrice] = useState(0)
     const location = useLocation()
@@ -110,6 +111,8 @@ export default function ProductPage() {
                             products={filteredProducts}
                             setCart={setCart}
                             cart={cart}
+                            quantity={quantity}
+                            setQuantity={setQuantity}
                         />
                     }
                 ></Route>
