@@ -20,14 +20,17 @@ export default function ProductDetails({ products, setCart, cart }) {
                 <h1>Loading</h1>
             ) : (
                 <div>
-                    <h1>Product Details</h1>
+                    <h1 className="font-bold text-xl ">Product Details</h1>
                     <h2>{product?.title}</h2>
                     <div>{product?.category}</div>
                     <div>{product?.description}</div>
                     <div>${product?.price}</div>
                     <br />
                     <button
-                        className="cartBtn"
+                        className="ocus:outline-none text-white bg-green-700
+                        hover:bg-green-800 focus:ring-4 focus:ring-green-300
+                        font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2
+                        dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
                         onClick={() => {
                             let newCart = [...cart]
                             const newProduct = { ...product }
@@ -43,7 +46,7 @@ export default function ProductDetails({ products, setCart, cart }) {
                         Add to Cart
                     </button>
                     <br />
-                    <div>
+                    <div className="ml-auto mr-auto h-auto max-w-lg">
                         <img alt={'img'} src={product?.thumbnail} />
                     </div>
                 </div>

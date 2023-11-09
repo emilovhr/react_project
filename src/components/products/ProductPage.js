@@ -21,8 +21,9 @@ export default function ProductPage() {
     }
 
     const removeFromCart = (e) => {
+        console.log('here')
         let newCart = cart.filter(
-            (c) => c.id !== parseInt(e.target.attributes[0].value, 10)
+            (c) => c.id !== parseInt(e.target.attributes[1].value, 10)
         )
         localStorage.setItem('cart', JSON.stringify(newCart))
         setCart(newCart)
@@ -61,10 +62,25 @@ export default function ProductPage() {
             </header>
             <div className="sideNav">
                 <img src={logo} className="App-logo" alt="logo" />
-                <label>Search</label>
-                <input onChange={handleSearchChange} value={searchTerm} />
-                <div>
-                    <Link to="/cart">Shopping Cart</Link>
+                <label className="font-bold">Filter</label>
+                <input
+                    className="border
+                    border-gray-300 text-gray-900
+                    text-sm rounded-lg focus:ring-blue-500
+                    focus:border-blue-500 block w-full pl-10 p-2.5
+                    dark:border-gray-600
+                    dark:placeholder-gray-400 dark:text-sky-500
+                    dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    onChange={handleSearchChange}
+                    value={searchTerm}
+                />
+                <div className="mt-3 text-center">
+                    <Link
+                        className="font-bold text-sky-400 hover:text-sky-900"
+                        to="/cart"
+                    >
+                        Shopping Cart
+                    </Link>
                     <div># of items: {cart.length}</div>
                 </div>
                 <ProductList products={filteredProducts} />

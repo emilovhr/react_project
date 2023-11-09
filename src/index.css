@@ -1,6 +1,6 @@
-/*@tailwind base;*/
-/*@tailwind components;*/
-/*@tailwind utilities;*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 body {
   margin: 0;
@@ -13,7 +13,7 @@ body {
 
 .sideNav {
   height: 100%;
-  width: 200px;
+  width: 300px;
   padding: 2rem;
   position: fixed;
   z-index: 1;
@@ -21,7 +21,7 @@ body {
   left: 0;
   overflow-x: hidden;
   overflow-y: scroll;
-  background-color: lightgray;
+  background-color: #ffffff;
   padding-top: 20px;
 }
 .sideNavChild {
