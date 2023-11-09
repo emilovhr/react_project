@@ -15,12 +15,14 @@ export default function ProductDetails({ products, setCart, cart }) {
     }, [id, products])
 
     return (
-        <div style={{ marginTop: '10rem' }}>
+        <div style={{ marginTop: '7rem' }}>
             {!product ? (
                 <h1>Loading</h1>
             ) : (
-                <div>
-                    <h1 className="font-bold text-xl ">Product Details</h1>
+                <div className="text-white">
+                    <h1 className="font-bold text-white text-2xl mb-5">
+                        Product Details
+                    </h1>
                     <h2>{product?.title}</h2>
                     <div>{product?.category}</div>
                     <div>{product?.description}</div>
