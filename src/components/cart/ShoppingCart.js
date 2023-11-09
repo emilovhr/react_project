@@ -15,7 +15,7 @@ export default function ShoppingCart({ cart, removeFromCart, cartTotalPrice }) {
                                     Product name
                                 </th>
                                 <th scope="col" className="px-6 py-3">
-                                    Color
+                                    Brand
                                 </th>
                                 <th scope="col" className="px-6 py-3">
                                     Category
@@ -44,7 +44,7 @@ export default function ShoppingCart({ cart, removeFromCart, cartTotalPrice }) {
                                                 {product.title}
                                             </th>
                                             <td className="px-6 py-4">
-                                                Silver
+                                                {product.brand}
                                             </td>
                                             <td className="px-6 py-4">
                                                 {product.category}
