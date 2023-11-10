@@ -58,7 +58,7 @@ export default function ProductPage() {
                             className="focus:outline-none text-white bg-green-700
                             hover:bg-green-800 focus:ring-4 focus:ring-green-300
                             font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2
-                            dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                            dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 justify-center"
                             onClick={toggleMenu}
                         >
                             Toggle Nav Menu
@@ -91,12 +91,14 @@ export default function ProductPage() {
                     <label className="font-bold">Filter</label>
                     <input
                         className="border
-                    border-gray-300 text-gray-900
-                    text-sm rounded-lg focus:ring-blue-500
-                    focus:border-blue-500 block w-full pl-10 p-2.5
-                    dark:border-gray-600
-                    dark:placeholder-gray-400 dark:text-sky-500
-                    dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        border-gray-300 text-gray-900
+                        text-sm rounded-lg focus:ring-blue-500
+                        focus:border-blue-500 block w-full pl-3 p-2.5
+                        ml-7 w-3/4
+                        dark:border-gray-600
+                        dark:placeholder-gray-400 dark:text-sky-500
+                        dark:focus:ring-blue-500
+                        dark:focus:border-blue-500"
                         onChange={handleSearchChange}
                         value={searchTerm}
                     />

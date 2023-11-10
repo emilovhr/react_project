@@ -21,103 +21,32 @@ export default function ProductDetails({
     }, [id, products])
 
     return (
-        <>
-            <section className="overflow-hidden py-11 font-poppins mt-32">
+        <div>
+            <section className="overflow-hidden py-11 font-poppins mt-16">
                 <div className="max-w-6xl px-4 py-4 mx-auto lg:py-8 md:px-6">
-                    <h2 className="max-w-xl mt-2 mb-6 text-2xl font-bold text-white md:text-4xl">
-                        {product?.title}
-                    </h2>
-                    <div className="flex flex-wrap -mx-4">
-                        <div className="w-full px-4 md:w-1/2 ">
-                            <div className="sticky top-0 overflow-hidden ">
-                                <div className="relative mb-6 lg:mb-10 lg:h-2/4 ">
-                                    <img
-                                        src={product?.thumbnail}
-                                        alt=""
-                                        className="object-cover w-full lg:h-full "
-                                    />
-                                </div>
-                                <div className="flex-wrap hidden md:flex ">
-                                    <div className="w-1/2 p-2 sm:w-1/4">
-                                        <a
-                                            href="#"
-                                            className="block border border-blue-300 dark:border-transparent
-                                            dark:hover:border-blue-300 hover:border-blue-300"
-                                        >
-                                            <img
-                                                src={product?.thumbnail}
-                                                alt=""
-                                                className="object-cover w-full lg:h-20"
-                                            />
-                                        </a>
-                                    </div>
-                                    <div className="w-1/2 p-2 sm:w-1/4">
-                                        <a
-                                            href="#"
-                                            className="block border border-transparent
-                                            dark:border-transparent dark:hover:border-blue-300
-                                            hover:border-blue-300"
-                                        >
-                                            <img
-                                                src={product?.thumbnail}
-                                                alt=""
-                                                className="object-cover w-full lg:h-20"
-                                            />
-                                        </a>
-                                    </div>
-                                    <div className="w-1/2 p-2 sm:w-1/4">
-                                        <a
-                                            href="#"
-                                            className="block border border-transparent dark:border-transparent
-                                            dark:hover:border-blue-300 hover:border-blue-300"
-                                        >
-                                            <img
-                                                src={product?.thumbnail}
-                                                alt=""
-                                                className="object-cover w-full lg:h-20"
-                                            />
-                                        </a>
-                                    </div>
-                                    <div className="w-1/2 p-2 sm:w-1/4">
-                                        <a
-                                            href="#"
-                                            className="block border border-transparent
-                                            dark:border-transparent dark:hover:border-blue-300
-                                            hover:border-blue-300"
-                                        >
-                                            <img
-                                                src={product?.thumbnail}
-                                                alt=""
-                                                className="object-cover w-full lg:h-20"
-                                            />
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div className="flex justify-center">
                         <div className="w-full px-4 md:w-1/2 ">
                             <div className="lg:pl-20">
+                                <h2 className="max-w-xl mt-2 mb-6 text-2xl font-bold text-white md:text-4xl">
+                                    {product?.title}
+                                </h2>
+                                <img
+                                    style={{ width: '100%' }}
+                                    className="mt-10 mb-10 w-[500px] justify-center h-auto max-w-full"
+                                    src={product?.thumbnail}
+                                />
                                 <div className="mb-8 ">
-                                    <span
-                                        className="text-lg font-medium
-                                        text-rose-500 dark:text-rose-200"
-                                    >
-                                        New
-                                    </span>
                                     <h2 className="max-w-xl mt-2 mb-6 text-2xl font-bold text-white md:text-4xl">
                                         {product?.category}
                                     </h2>
-                                    <p className="max-w-md mb-8 text-gray-700 dark:text-gray-400">
+                                    <p className="mb-8 text-gray-700 dark:text-gray-400">
                                         {product?.description}
                                     </p>
-                                    <p className="inline-block mb-8 text-4xl font-bold text-gray-700 dark:text-gray-400 ">
+                                    <p className="inline-block text-4xl font-bold text-gray-700 dark:text-gray-400 ">
                                         <span>${product?.price}</span>
                                     </p>
-                                    <p className="text-green-600 dark:text-green-300 ">
-                                        7 in stock
-                                    </p>
                                 </div>
-                                <div className="w-32 mb-8 ">
+                                <div className="w-[100px] mr-auto ml-auto mb-8 ">
                                     <label
                                         htmlFor=""
                                         className="w-full text-xl font-semibold text-white"
@@ -127,10 +56,12 @@ export default function ProductDetails({
                                     <div className="relative flex flex-row w-full h-10 mt-4 bg-transparent rounded-lg">
                                         <input
                                             type="number"
-                                            className="flex items-center w-full font-semibold text-center
-                                            text-gray-700 placeholder-gray-700 bg-gray-300 outline-none
-                                            dark:text-gray-400 dark:placeholder-gray-400 dark:bg-gray-900
-                                            focus:outline-none text-md"
+                                            className="border border-gray-300
+                                            text-gray-900 text-sm rounded-lg
+                                            focus:ring-blue-500 focus:border-blue-500
+                                            block w-full pl-10 p-2.5 dark:border-gray-600
+                                            dark:placeholder-gray-400 dark:text-sky-500
+                                            dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                             placeholder="1"
                                             min="1"
                                             value={quantity}
@@ -185,6 +116,6 @@ export default function ProductDetails({
                     </div>
                 </div>
             </section>
-        </>
+        </div>
     )
 }
