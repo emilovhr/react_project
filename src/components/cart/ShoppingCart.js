@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom'
-
 export default function ShoppingCart({ cart, removeFromCart, cartTotalPrice }) {
     return (
         <div style={{ marginTop: '7rem' }}>

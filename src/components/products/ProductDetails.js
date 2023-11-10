@@ -34,6 +34,7 @@ export default function ProductDetails({
                                     style={{ width: '100%' }}
                                     className="mt-10 mb-10 w-[500px] justify-center h-auto max-w-full"
                                     src={product?.thumbnail}
+                                    alt="product"
                                 />
                                 <div className="mb-8 ">
                                     <h2 className="max-w-xl mt-2 mb-6 text-2xl font-bold text-white md:text-4xl">

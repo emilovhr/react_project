@@ -90,11 +90,11 @@ export default function ProductPage() {
                     <img src={logo} className="App-logo mt-10" alt="logo" />
                     <label className="font-bold">Filter</label>
                     <input
-                        className="border
+                        className="w-[185px] border
                         border-gray-300 text-gray-900
                         text-sm rounded-lg focus:ring-blue-500
                         focus:border-blue-500 block w-full pl-3 p-2.5
-                        ml-7 w-3/4
+                        ml-7
                         dark:border-gray-600
                         dark:placeholder-gray-400 dark:text-sky-500
                         dark:focus:ring-blue-500
