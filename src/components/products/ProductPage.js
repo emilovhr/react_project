@@ -18,6 +18,8 @@ export default function ProductPage() {
     const location = useLocation()
     const products = useProducts()
 
+    const smallerDetails = isNavOpen ? 'md:max-w-[85%] ml-auto' : 'mr-auto'
+
     const handleSearchChange = (e) => {
         setSearchTerm(e.target.value)
     }
@@ -85,59 +87,68 @@ export default function ProductPage() {
                     </div>
                 </div>
             </header>
-            {isNavOpen ? (
-                <div className="sideNav">
-                    <img src={logo} className="App-logo mt-10" alt="logo" />
-                    <label className="font-bold">Filter</label>
-                    <input
-                        className="w-[185px] border
+            <div>
+                {isNavOpen ? (
+                    <div className="sideNav min-w-full object-scale-down relative md:min-w-[300px] md:fixed">
+                        <img
+                            src={logo}
+                            className="ml-auto mr-auto App-logo mt-10"
+                            alt="logo"
+                        />
+                        <label className="font-bold">Filter</label>
+                        <input
+                            className="min-w-[90%] mr-[300px] md:min-w-[185px] border
                         border-gray-300 text-gray-900
                         text-sm rounded-lg focus:ring-blue-500
-                        focus:border-blue-500 block w-full pl-3 p-2.5
+                        focus:border-blue-500 block pl-3 p-2.5
                         ml-7
                         dark:border-gray-600
                         dark:placeholder-gray-400 dark:text-sky-500
                         dark:focus:ring-blue-500
                         dark:focus:border-blue-500"
-                        onChange={handleSearchChange}
-                        value={searchTerm}
-                    />
-                    <div className="mt-3 text-center">
-                        <Link
-                            className="font-bold text-sky-400 hover:text-sky-900"
-                            to="/cart"
-                        >
-                            Shopping Cart
-                        </Link>
-                        <div># of items: {cart.length}</div>
+                            onChange={handleSearchChange}
+                            value={searchTerm}
+                        />
+                        <div className="mt-3 text-center">
+                            <Link
+                                className="font-bold text-sky-400 hover:text-sky-900"
+                                to="/cart"
+                            >
+                                Shopping Cart
+                            </Link>
+                            <div># of items: {cart.length}</div>
+                        </div>
+                        <ProductList products={filteredProducts} />
                     </div>
-                    <ProductList products={filteredProducts} />
+                ) : null}
+                <div className={`${smallerDetails}`}>
+                    <Routes>
+                        <Route
+                            path="/details/:id"
+                            element={
+                                <ProductDetails
+                                    products={filteredProducts}
+                                    setCart={setCart}
+                                    cart={cart}
+                                    quantity={quantity}
+                                    setQuantity={setQuantity}
+                                />
+                            }
+                        ></Route>
+                        <Route
+                            path="/cart/"
+                            element={
+                                <ShoppingCart
+                                    cart={cart}
+                                    removeFromCart={removeFromCart}
+                                    cartTotalPrice={cartTotalPrice}
+                                    isNavOpen={isNavOpen}
+                                />
+                            }
+                        ></Route>
+                    </Routes>
                 </div>
-            ) : null}
-            <Routes>
-                <Route
-                    path="/details/:id"
-                    element={
-                        <ProductDetails
-                            products={filteredProducts}
-                            setCart={setCart}
-                            cart={cart}
-                            quantity={quantity}
-                            setQuantity={setQuantity}
-                        />
-                    }
-                ></Route>
-                <Route
-                    path="/cart/"
-                    element={
-                        <ShoppingCart
-                            cart={cart}
-                            removeFromCart={removeFromCart}
-                            cartTotalPrice={cartTotalPrice}
-                        />
-                    }
-                ></Route>
-            </Routes>
+            </div>
         </>
     )
 }
