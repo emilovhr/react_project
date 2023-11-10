@@ -132,6 +132,7 @@ export default function ProductPage() {
                                     cart={cart}
                                     quantity={quantity}
                                     setQuantity={setQuantity}
+                                    isNavOpen={isNavOpen}
                                 />
                             }
                         ></Route>

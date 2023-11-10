@@ -7,9 +7,12 @@ export default function ProductDetails({
     cart,
     quantity,
     setQuantity,
+    isNavOpen,
 }) {
     const { id } = useParams()
     const [product, setProduct] = useState(null)
+
+    const navClosedStyle = isNavOpen ? '' : 'mt-8'
 
     useEffect(() => {
         const prod = products?.find((p) => {
@@ -22,7 +25,9 @@ export default function ProductDetails({
 
     return (
         <div>
-            <section className="overflow-hidden py-11 font-poppins mt-16">
+            <section
+                className={`overflow-hidden py-11 font-poppins ${navClosedStyle} md:mt-16`}
+            >
                 <div className="max-w-6xl px-4 py-4 mx-auto lg:py-8 md:px-6">
                     <div className="flex justify-center">
                         <div className="w-full px-4 md:w-1/2 ">
@@ -32,7 +37,7 @@ export default function ProductDetails({
                                 </h2>
                                 <img
                                     style={{ width: '100%' }}
-                                    className="mt-10 mb-10 w-[500px] justify-center h-auto max-w-full"
+                                    className="mt-10 mb-10 w-[500px] justify-center h-auto max-w-full rounded-lg shadow-lg shadow-white"
                                     src={product?.thumbnail}
                                     alt="product"
                                 />

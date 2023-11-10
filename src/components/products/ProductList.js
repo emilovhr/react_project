@@ -3,7 +3,7 @@ export default function ProductList({ products }) {
     return (
         <div className="mt-3 ml-3">
             <h1 className="font-bold">Product List</h1>
-            <div className="sideNavChild overflow-x-scroll max-h-[700px]">
+            <div className="sideNavChild overflow-x-scroll max-h-[150px] md:max-h-[600px]">
                 <ul className="productList">
                     {products?.map((product, i) => {
                         return (
