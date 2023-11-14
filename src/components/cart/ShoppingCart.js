@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 export default function ShoppingCart({
     cart,
     removeFromCart,
@@ -54,7 +56,13 @@ export default function ShoppingCart({
                                                 scope="row"
                                                 className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                             >
-                                                {product.title}
+                                                <Link
+                                                    className="pl-4 -ml-px text-sky-500
+                                                    border-current font-semibold dark:text-sky-400 hover:text-sky-900"
+                                                    to={`/details/${product.listId}`}
+                                                >
+                                                    {product.title}
+                                                </Link>
                                             </th>
                                             {width < 1145 ? null : (
                                                 <>

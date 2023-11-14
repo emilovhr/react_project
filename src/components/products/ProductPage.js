@@ -1,12 +1,13 @@
 import ProductList from './ProductList'
-import { useEffect, useState } from 'react'
-import { useProducts } from '../../hooks/useProducts'
+import { Suspense, useEffect, useState } from 'react'
+import { useFetch } from '../../hooks/useFetch'
 import { Link, Route, Routes, useLocation } from 'react-router-dom'
 import ProductDetails from './ProductDetails'
 import ShoppingCart from '../cart/ShoppingCart'
 import logo from '../../logo.svg'
 import cartSvg from '../../shopping-cart-outline-svgrepo-com.svg'
 import { useWindowSize } from '../../hooks/useWindowSize'
+import Loader from '../Loader'
 
 export default function ProductPage() {
     const [searchTerm, setSearchTerm] = useState('')
@@ -17,7 +18,8 @@ export default function ProductPage() {
     const [isNavOpen, setIsNavOpen] = useState(true)
     const [cartTotalPrice, setCartTotalPrice] = useState(0)
     const location = useLocation()
-    const products = useProducts()
+    const { data, status } = useFetch('https://dummyjson.com/products')
+
     const size = useWindowSize()
 
     const smallerDetails = isNavOpen ? 'md:ml-64 md:mr-0' : 'mr-auto'
@@ -37,7 +39,7 @@ export default function ProductPage() {
         setCart(newCart)
     }
 
-    const filteredProducts = products?.filter((prod) => {
+    const filteredProducts = data?.products?.filter((prod) => {
         if (searchTerm === '') return true
         return prod.title.toLowerCase().startsWith(searchTerm.toLowerCase())
     })
@@ -126,14 +128,14 @@ export default function ProductPage() {
                     <label className="font-bold">Filter</label>
                     <input
                         className="min-w-[90%] mr-[300px] md:min-w-[185px] border
-                            border-gray-300 text-gray-900
-                            text-sm rounded-lg focus:ring-blue-500
-                            focus:border-blue-500 block pl-3 p-2.5
-                            ml-7
-                            dark:border-gray-600
-                            dark:placeholder-gray-400 dark:text-sky-500
-                            dark:focus:ring-blue-500
-                            dark:focus:border-blue-500"
+                        border-gray-300 text-gray-900
+                        text-sm rounded-lg focus:ring-blue-500
+                        focus:border-blue-500 block pl-3 p-2.5
+                        ml-7
+                        dark:border-gray-600
+                        dark:placeholder-gray-400 dark:text-sky-500
+                        dark:focus:ring-blue-500
+                        dark:focus:border-blue-500"
                         onChange={handleSearchChange}
                         value={searchTerm}
                     />
@@ -146,7 +148,11 @@ export default function ProductPage() {
                         </Link>
                         <div># of items: {cart.length}</div>
                     </div>
-                    <ProductList products={filteredProducts} />
+                    {status === 'loading' ? (
+                        <Loader />
+                    ) : (
+                        <ProductList products={filteredProducts} />
+                    )}
                 </div>
                 <div className={`${smallerDetails}`}>
                     <Routes>
@@ -160,6 +166,7 @@ export default function ProductPage() {
                                     quantity={quantity}
                                     setQuantity={setQuantity}
                                     isNavOpen={isNavOpen}
+                                    status={status}
                                 />
                             }
                         ></Route>
