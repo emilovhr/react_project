@@ -5,15 +5,15 @@ export default function ShoppingCart({
     isNavOpen,
 }) {
     const smallerTable = isNavOpen
-        ? 'mr-8 md:max-w-[65%] xl:mr-32'
-        : ' ml-auto mr-auto'
+        ? 'ml-12 mr-12 md:ml-48 md:mr-32'
+        : ' lg:w-[65%] w-[95%]'
     return (
         <div style={{ marginTop: '7rem' }}>
             <h1 className="font-bold text-white text-2xl mb-5">
                 Shopping Cart
             </h1>
             <div
-                className={`${smallerTable} ml-auto max-w-4xl relative overflow-x-auto mb-10`}
+                className={`${smallerTable} ml-auto mr-auto relative overflow-x-auto mb-10`}
             >
                 {cart.length ? (
                     <table className="md:w-full text-sm text-left text-gray-500 dark:text-gray-400">
