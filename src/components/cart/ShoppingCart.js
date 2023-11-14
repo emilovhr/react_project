@@ -7,7 +7,7 @@ export default function ShoppingCart({
 }) {
     const { width } = size
     console.log(width)
-    const smallerTable = isNavOpen ? 'ml-12 mr-12 md:ml-48 md:mr-12' : 'w-[95%]'
+    const smallerTable = isNavOpen ? 'ml-12 mr-12 md:ml-24 md:mr-12' : 'w-[95%]'
     return (
         <div style={{ marginTop: '7rem' }}>
             <h1 className="font-bold text-white text-2xl mb-5">
@@ -23,7 +23,7 @@ export default function ShoppingCart({
                                 <th scope="col" className="px-6 py-3">
                                     Product name
                                 </th>
-                                {width < 1091 ? null : (
+                                {width < 1145 ? null : (
                                     <>
                                         <th scope="col" className="px-6 py-3">
                                             Brand
@@ -56,7 +56,7 @@ export default function ShoppingCart({
                                             >
                                                 {product.title}
                                             </th>
-                                            {width < 1091 ? null : (
+                                            {width < 1145 ? null : (
                                                 <>
                                                     <td className="px-6 py-4">
                                                         {product.brand}
@@ -91,7 +91,7 @@ export default function ShoppingCart({
                                     scope="row"
                                     className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                 ></th>
-                                {width < 1091 ? null : (
+                                {width < 1145 ? null : (
                                     <>
                                         <td className="px-6 py-4"></td>
                                         <td className="px-6 py-4 text-right"></td>

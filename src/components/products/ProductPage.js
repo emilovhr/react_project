@@ -20,7 +20,10 @@ export default function ProductPage() {
     const products = useProducts()
     const size = useWindowSize()
 
-    const smallerDetails = isNavOpen ? 'md:max-w-[85%] ml-auto' : 'mr-auto'
+    const smallerDetails = isNavOpen ? 'md:ml-64 md:mr-0' : 'mr-auto'
+    const isOpen = isNavOpen
+        ? 'opacity-100 relative visible'
+        : 'opacity-0 invisible'
 
     const handleSearchChange = (e) => {
         setSearchTerm(e.target.value)
@@ -57,15 +60,33 @@ export default function ProductPage() {
         <>
             <header className="App-header">
                 <div className="flex">
-                    <div>
+                    <div className="md:mt-5 mt-4 mr-6">
                         <button
-                            className="focus:outline-none text-white bg-green-700
-                            hover:bg-green-800 focus:ring-4 focus:ring-green-300
-                            font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2
-                            dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 justify-center"
                             onClick={toggleMenu}
+                            className="flex flex-col justify-center items-center"
                         >
-                            Toggle Nav Menu
+                            <span
+                                className={`bg-sky-400 block transition-all duration-300 ease-out 
+                                h-0.5 w-6 rounded-sm ${
+                                    isNavOpen
+                                        ? 'rotate-45 translate-y-1'
+                                        : '-translate-y-0.5'
+                                }`}
+                            ></span>
+                            <span
+                                className={`bg-sky-400 block transition-all duration-300 ease-out 
+                                h-0.5 w-6 rounded-sm my-0.5 ${
+                                    isNavOpen ? 'opacity-0' : 'opacity-100'
+                                }`}
+                            ></span>
+                            <span
+                                className={`bg-sky-400 block transition-all duration-300 ease-out
+                                h-0.5 w-6 rounded-sm ${
+                                    isNavOpen
+                                        ? '-rotate-45 -translate-y-1'
+                                        : 'translate-y-0.5'
+                                }`}
+                            ></span>
                         </button>
                     </div>
                     <div className="mt-[4px]">Products & Shopping Cart</div>
@@ -90,39 +111,43 @@ export default function ProductPage() {
                 </div>
             </header>
             <div>
-                {isNavOpen ? (
-                    <div className="sideNav min-w-full object-scale-down relative md:min-w-[300px] md:fixed">
-                        <img
-                            src={logo}
-                            className="ml-auto mr-auto App-logo mt-10"
-                            alt="logo"
-                        />
-                        <label className="font-bold">Filter</label>
-                        <input
-                            className="min-w-[90%] mr-[300px] md:min-w-[185px] border
-                        border-gray-300 text-gray-900
-                        text-sm rounded-lg focus:ring-blue-500
-                        focus:border-blue-500 block pl-3 p-2.5
-                        ml-7
-                        dark:border-gray-600
-                        dark:placeholder-gray-400 dark:text-sky-500
-                        dark:focus:ring-blue-500
-                        dark:focus:border-blue-500"
-                            onChange={handleSearchChange}
-                            value={searchTerm}
-                        />
-                        <div className="mt-3 text-center">
-                            <Link
-                                className="font-bold text-sky-400 hover:text-sky-900"
-                                to="/cart"
-                            >
-                                Shopping Cart
-                            </Link>
-                            <div># of items: {cart.length}</div>
-                        </div>
-                        <ProductList products={filteredProducts} />
+                <div
+                    className={
+                        isNavOpen
+                            ? `sideNav ${isOpen} min-w-full object-scale-down md:min-w-[300px] md:fixed ease-in-out duration-200`
+                            : `absolute ${isOpen}`
+                    }
+                >
+                    <img
+                        src={logo}
+                        className="ml-auto mr-auto App-logo mt-10"
+                        alt="logo"
+                    />
+                    <label className="font-bold">Filter</label>
+                    <input
+                        className="min-w-[90%] mr-[300px] md:min-w-[185px] border
+                            border-gray-300 text-gray-900
+                            text-sm rounded-lg focus:ring-blue-500
+                            focus:border-blue-500 block pl-3 p-2.5
+                            ml-7
+                            dark:border-gray-600
+                            dark:placeholder-gray-400 dark:text-sky-500
+                            dark:focus:ring-blue-500
+                            dark:focus:border-blue-500"
+                        onChange={handleSearchChange}
+                        value={searchTerm}
+                    />
+                    <div className="mt-3 text-center">
+                        <Link
+                            className="font-bold text-sky-400 hover:text-sky-900"
+                            to="/cart"
+                        >
+                            Shopping Cart
+                        </Link>
+                        <div># of items: {cart.length}</div>
                     </div>
-                ) : null}
+                    <ProductList products={filteredProducts} />
+                </div>
                 <div className={`${smallerDetails}`}>
                     <Routes>
                         <Route
