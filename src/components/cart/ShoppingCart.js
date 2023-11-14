@@ -3,10 +3,11 @@ export default function ShoppingCart({
     removeFromCart,
     cartTotalPrice,
     isNavOpen,
+    size,
 }) {
-    const smallerTable = isNavOpen
-        ? 'ml-12 mr-12 md:ml-48 md:mr-32'
-        : ' lg:w-[65%] w-[95%]'
+    const { width } = size
+    console.log(width)
+    const smallerTable = isNavOpen ? 'ml-12 mr-12 md:ml-48 md:mr-12' : 'w-[95%]'
     return (
         <div style={{ marginTop: '7rem' }}>
             <h1 className="font-bold text-white text-2xl mb-5">
@@ -16,18 +17,22 @@ export default function ShoppingCart({
                 className={`${smallerTable} ml-auto mr-auto relative overflow-x-auto mb-10`}
             >
                 {cart.length ? (
-                    <table className="md:w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 <th scope="col" className="px-6 py-3">
                                     Product name
                                 </th>
-                                <th scope="col" className="px-6 py-3">
-                                    Brand
-                                </th>
-                                <th scope="col" className="px-6 py-3">
-                                    Category
-                                </th>
+                                {width < 1091 ? null : (
+                                    <>
+                                        <th scope="col" className="px-6 py-3">
+                                            Brand
+                                        </th>
+                                        <th scope="col" className="px-6 py-3">
+                                            Category
+                                        </th>
+                                    </>
+                                )}
                                 <th scope="col" className="px-6 py-3">
                                     Price
                                 </th>
@@ -51,12 +56,16 @@ export default function ShoppingCart({
                                             >
                                                 {product.title}
                                             </th>
-                                            <td className="px-6 py-4">
-                                                {product.brand}
-                                            </td>
-                                            <td className="px-6 py-4">
-                                                {product.category}
-                                            </td>
+                                            {width < 1091 ? null : (
+                                                <>
+                                                    <td className="px-6 py-4">
+                                                        {product.brand}
+                                                    </td>
+                                                    <td className="px-6 py-4">
+                                                        {product.category}
+                                                    </td>
+                                                </>
+                                            )}
                                             <td className="px-6 py-4">
                                                 ${product.price}
                                             </td>
@@ -82,16 +91,20 @@ export default function ShoppingCart({
                                     scope="row"
                                     className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                 ></th>
-                                <td className="px-6 py-4"></td>
-                                <td className="px-6 py-4 text-right">
-                                    <label className="font-bold">
-                                        Total :{' '}
-                                    </label>
-                                </td>
+                                {width < 1091 ? null : (
+                                    <>
+                                        <td className="px-6 py-4"></td>
+                                        <td className="px-6 py-4 text-right"></td>
+                                    </>
+                                )}
                                 <td className="px-6 py-4">
                                     <div>
-                                        <span className="font-bold">$</span>
-                                        <span>{cartTotalPrice}</span>
+                                        <span className="font-bold text-md">
+                                            $
+                                        </span>
+                                        <span className="font-bold text-md">
+                                            {cartTotalPrice}
+                                        </span>
                                     </div>
                                 </td>
                                 <td className="px-6 py-4"></td>

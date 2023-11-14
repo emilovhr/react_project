@@ -6,6 +6,7 @@ import ProductDetails from './ProductDetails'
 import ShoppingCart from '../cart/ShoppingCart'
 import logo from '../../logo.svg'
 import cartSvg from '../../shopping-cart-outline-svgrepo-com.svg'
+import { useWindowSize } from '../../hooks/useWindowSize'
 
 export default function ProductPage() {
     const [searchTerm, setSearchTerm] = useState('')
@@ -17,6 +18,7 @@ export default function ProductPage() {
     const [cartTotalPrice, setCartTotalPrice] = useState(0)
     const location = useLocation()
     const products = useProducts()
+    const size = useWindowSize()
 
     const smallerDetails = isNavOpen ? 'md:max-w-[85%] ml-auto' : 'mr-auto'
 
@@ -144,6 +146,7 @@ export default function ProductPage() {
                                     removeFromCart={removeFromCart}
                                     cartTotalPrice={cartTotalPrice}
                                     isNavOpen={isNavOpen}
+                                    size={size}
                                 />
                             }
                         ></Route>
