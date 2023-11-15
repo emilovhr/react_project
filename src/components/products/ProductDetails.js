@@ -37,6 +37,7 @@ export default function ProductDetails({
                                 {status === 'loading' ? (
                                     <Loader />
                                 ) : (
+                                    status !== 'error' &&
                                     product && (
                                         <div>
                                             <h2 className="max-w-xl mt-2 mb-6 text-2xl font-bold text-white md:text-4xl">
@@ -44,7 +45,7 @@ export default function ProductDetails({
                                             </h2>
                                             <img
                                                 style={{ width: '100%' }}
-                                                className="mt-10 mb-10 w-[500px] justify-center h-auto max-w-full rounded-lg shadow-lg shadow-white"
+                                                className="mt-10 mb-10 w-[500px] justify-center h-auto max-w-full rounded-lg shadow-black shadow-xl"
                                                 src={product?.thumbnail}
                                                 alt="product"
                                             />

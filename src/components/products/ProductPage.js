@@ -1,5 +1,5 @@
 import ProductList from './ProductList'
-import { Suspense, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useFetch } from '../../hooks/useFetch'
 import { Link, Route, Routes, useLocation } from 'react-router-dom'
 import ProductDetails from './ProductDetails'
@@ -60,50 +60,53 @@ export default function ProductPage() {
 
     return (
         <>
-            <header className="App-header">
+            <header className="App-header shadow-black shadow-sm backdrop-blur-md">
                 <div className="flex">
-                    <div className="md:mt-5 mt-4 mr-6">
+                    <div className="absolute left-5 top-[30px]">
                         <button
                             onClick={toggleMenu}
                             className="flex flex-col justify-center items-center"
                         >
-                            <span
-                                className={`bg-sky-400 block transition-all duration-300 ease-out 
-                                h-0.5 w-6 rounded-sm ${
+                            <div className="group">
+                                <span
+                                    className={`bg-sky-400 block transition-all duration-300 ease-out 
+                                h-0.5 w-6 rounded-sm group-hover:bg-white ${
                                     isNavOpen
                                         ? 'rotate-45 translate-y-1'
                                         : '-translate-y-0.5'
                                 }`}
-                            ></span>
-                            <span
-                                className={`bg-sky-400 block transition-all duration-300 ease-out 
-                                h-0.5 w-6 rounded-sm my-0.5 ${
+                                ></span>
+                                <span
+                                    className={`bg-sky-400 block transition-all duration-300 ease-out 
+                                h-0.5 w-6 rounded-sm my-0.5 group-hover:bg-white ${
                                     isNavOpen ? 'opacity-0' : 'opacity-100'
                                 }`}
-                            ></span>
-                            <span
-                                className={`bg-sky-400 block transition-all duration-300 ease-out
-                                h-0.5 w-6 rounded-sm ${
+                                ></span>
+                                <span
+                                    className={`bg-sky-400 block transition-all duration-300 ease-out
+                                h-0.5 w-6 rounded-sm group-hover:bg-white ${
                                     isNavOpen
                                         ? '-rotate-45 -translate-y-1'
                                         : 'translate-y-0.5'
                                 }`}
-                            ></span>
+                                ></span>
+                            </div>
                         </button>
                     </div>
-                    <div className="mt-[4px]">Products & Shopping Cart</div>
+                    <div className="ml-[25px]">Product Store</div>
                     <div className="cart-logo-align">
                         <Link to="/cart">
                             <img
                                 src={cartSvg}
-                                className="cartLogo"
+                                className="cartLogo rounded-md w-[40px] pt-[2px] pr-[0px] pb-[4px]
+                                pl-[5px] h-[30px] hover:bg-sky-400 hover:shadow-sm hover:shadow-black focus:bg-sky-400"
                                 alt="logo"
                             />
                             <span className="sr-only">Notifications</span>
                             {cart.length ? (
                                 <div
                                     className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold
-                                text-white bg-red-500 border-2 border-gray-500 rounded-full -top-2 -right-2 dark:border-gray-900"
+                                    text-white bg-red-500 border-2 border-gray-500 rounded-full -top-2 -right-2 dark:border-gray-900"
                                 >
                                     {cart.length}
                                 </div>

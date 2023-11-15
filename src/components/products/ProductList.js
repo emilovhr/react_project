@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom'
 export default function ProductList({ products }) {
     return (
         <div className="mt-3 ml-3">
-            <h1 className="font-bold">Product List</h1>
-            <div className="sideNavChild overflow-x-scroll max-h-[150px] md:max-h-[600px]">
+            <h1 className="font-bold mb-2">Product List</h1>
+            <div className="sideNavChild overflow-x-scroll max-h-[150px] md:max-h-[400px]">
                 <ul className="productList">
                     {products?.map((product, i) => {
                         return (

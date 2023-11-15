@@ -8,54 +8,71 @@ export default function ShoppingCart({
     size,
 }) {
     const { width } = size
-    console.log(width)
-    const smallerTable = isNavOpen ? 'ml-12 mr-12 md:ml-24 md:mr-12' : 'w-[95%]'
+    const smallerTable = isNavOpen ? 'ml-20 mr-20 md:ml-24 md:mr-12' : 'w-[95%]'
+
+    const smallerWidth = width < 900 ? 'text-xs' : 'text-sm'
+
     return (
-        <div style={{ marginTop: '7rem' }}>
+        <div className={isNavOpen ? `mt-12 md:mt-32` : 'mt-32'}>
             <h1 className="font-bold text-white text-2xl mb-5">
                 Shopping Cart
             </h1>
             <div
-                className={`${smallerTable} ml-auto mr-auto relative overflow-x-auto mb-10`}
+                className={`${smallerTable} ml-auto mr-auto relative overflow-x-auto mb-10 rounded-2xl`}
             >
                 {cart.length ? (
-                    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <table
+                        className={`${smallerWidth} w-full text-left text-gray-500 dark:text-gray-400 pt-5 pb-0 text-center sm:text-left`}
+                    >
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                            <tr>
-                                <th scope="col" className="px-6 py-3">
+                            <tr className="sm:table-row flex flex-col flex-nowrap hidden sm:visible">
+                                <th scope="col" className="px-6 py-4">
                                     Product name
                                 </th>
                                 {width < 1145 ? null : (
                                     <>
-                                        <th scope="col" className="px-6 py-3">
+                                        <th scope="col" className="px-3 py-2">
                                             Brand
                                         </th>
-                                        <th scope="col" className="px-6 py-3">
+                                        <th scope="col" className="px-3 py-2">
                                             Category
                                         </th>
                                     </>
                                 )}
-                                <th scope="col" className="px-6 py-3">
+                                <th scope="col" className="px-3 py-2">
                                     Price
                                 </th>
-                                <th scope="col" className="px-6 py-3">
+                                <th scope="col" className="px-3 py-2">
                                     Remove
                                 </th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody className="flex-1 sm:flex-none">
                             {cart
                                 ?.sort((a, b) => a.title.localeCompare(b.title))
                                 .map((product, i) => {
                                     return (
                                         <tr
                                             key={i}
-                                            className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                                            className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 sm:table-row flex flex-col flex-nowrap py-5"
                                         >
                                             <th
                                                 scope="row"
-                                                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                                className="px-3 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                             >
+                                                <Link
+                                                    to={`/details/${product.listId}`}
+                                                >
+                                                    <td className="justify-center flex visible sm:hidden">
+                                                        <img
+                                                            className="h-14 w-14 mb-5 rounded-md shadow-black hover:shadow-white hover:shadow-sm shadow-lg"
+                                                            src={
+                                                                product.thumbnail
+                                                            }
+                                                            alt="product-img"
+                                                        />
+                                                    </td>
+                                                </Link>
                                                 <Link
                                                     className="pl-4 -ml-px text-sky-500
                                                     border-current font-semibold dark:text-sky-400 hover:text-sky-900"
@@ -66,25 +83,25 @@ export default function ShoppingCart({
                                             </th>
                                             {width < 1145 ? null : (
                                                 <>
-                                                    <td className="px-6 py-4">
+                                                    <td className="px-3 py-2">
                                                         {product.brand}
                                                     </td>
-                                                    <td className="px-6 py-4">
+                                                    <td className="px-3 py-2">
                                                         {product.category}
                                                     </td>
                                                 </>
                                             )}
-                                            <td className="px-6 py-4">
+                                            <td className="px-3 py-2">
                                                 ${product.price}
                                             </td>
-                                            <td className="px-6 py-4">
+                                            <td className="px-3 py-2">
                                                 <button
-                                                    className="focus:outline-none
-                                                        text-white bg-red-700 hover:bg-red-800
-                                                        focus:ring-4 focus:ring-red-300
-                                                        font-medium rounded-lg text-sm
-                                                        px-5 py-2.5 mr-2 mb-2 dark:bg-red-600
-                                                        dark:hover:bg-red-700 dark:focus:ring-red-900"
+                                                    className="relative top-1 focus:outline-none
+                                                    text-white bg-red-700 hover:bg-red-800
+                                                    focus:ring-4 focus:ring-red-300
+                                                    font-medium rounded-lg text-sm
+                                                    px-1 py-1 mr-2 mb-2 dark:bg-red-600
+                                                    dark:hover:bg-red-700 dark:focus:ring-red-900"
                                                     idx={product.id}
                                                     onClick={removeFromCart}
                                                 >
@@ -94,18 +111,18 @@ export default function ShoppingCart({
                                         </tr>
                                     )
                                 })}
-                            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                            <tr className="bg-white dark:bg-gray-800 dark:border-gray-700 sm:table-row flex flex-col flex-no wrap">
                                 <th
                                     scope="row"
-                                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                    className="px-3 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                 ></th>
                                 {width < 1145 ? null : (
                                     <>
-                                        <td className="px-6 py-4"></td>
-                                        <td className="px-6 py-4 text-right"></td>
+                                        <td className="px-3 py-2"></td>
+                                        <td className="px-3 py-2 text-right"></td>
                                     </>
                                 )}
-                                <td className="px-6 py-4">
+                                <td className="px-3 py-2">
                                     <div>
                                         <span className="font-bold text-md">
                                             $
@@ -115,7 +132,7 @@ export default function ShoppingCart({
                                         </span>
                                     </div>
                                 </td>
-                                <td className="px-6 py-4"></td>
+                                <td className="px-3 py-2"></td>
                             </tr>
                         </tbody>
                     </table>
