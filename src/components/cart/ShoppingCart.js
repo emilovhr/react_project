@@ -8,7 +8,7 @@ export default function ShoppingCart({
     size,
 }) {
     const { width } = size
-    const smallerTable = isNavOpen ? 'ml-20 mr-20 md:ml-24 md:mr-12' : 'w-[95%]'
+    const smallerTable = isNavOpen ? 'ml-20 mr-20 md:ml-24 md:mr-12' : 'w-[70%]'
 
     const smallerWidth = width < 900 ? 'text-xs' : 'text-sm'
 
