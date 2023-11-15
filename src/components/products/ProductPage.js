@@ -1,5 +1,5 @@
 import ProductList from './ProductList'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useFetch } from '../../hooks/useFetch'
 import { Link, Route, Routes, useLocation } from 'react-router-dom'
 import ProductDetails from './ProductDetails'
@@ -14,6 +14,7 @@ export default function ProductPage() {
     const [cart, setCart] = useState(() => {
         return JSON.parse(localStorage.getItem('cart')) ?? []
     })
+    const navMenu = useRef(null)
     const [quantity, setQuantity] = useState(1)
     const [isNavOpen, setIsNavOpen] = useState(true)
     const [cartTotalPrice, setCartTotalPrice] = useState(0)
@@ -46,6 +47,12 @@ export default function ProductPage() {
 
     const toggleMenu = () => {
         setIsNavOpen(!isNavOpen)
+        if (!isNavOpen) {
+            navMenu.current.scrollIntoView({
+                block: 'end',
+                inline: 'nearest',
+            })
+        }
     }
 
     useEffect(() => {
@@ -122,19 +129,20 @@ export default function ProductPage() {
                             ? `sideNav ${isOpen} min-w-full object-scale-down md:min-w-[300px] md:fixed ease-in-out duration-200`
                             : `absolute ${isOpen}`
                     }
+                    ref={navMenu}
                 >
                     <div className="mt-20">
                         <label className="font-bold">Filter</label>
                         <input
                             className="min-w-[90%] mr-[300px] md:min-w-[185px] border
-                        border-gray-300 text-gray-900
-                        text-sm rounded-lg focus:ring-blue-500
-                        focus:border-blue-500 block pl-3 p-2.5
-                        ml-7
-                        dark:border-gray-600
-                        dark:placeholder-gray-400 dark:text-sky-500
-                        dark:focus:ring-blue-500
-                        dark:focus:border-blue-500 mt-1"
+                            border-gray-300 text-gray-900
+                            text-sm rounded-lg focus:ring-blue-500
+                            focus:border-blue-500 block pl-3 p-2.5
+                            ml-7
+                            dark:border-gray-600
+                            dark:placeholder-gray-400 dark:text-sky-500
+                            dark:focus:ring-blue-500
+                            dark:focus:border-blue-500 mt-1"
                             onChange={handleSearchChange}
                             value={searchTerm}
                         />
