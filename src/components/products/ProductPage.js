@@ -123,14 +123,10 @@ export default function ProductPage() {
                             : `absolute ${isOpen}`
                     }
                 >
-                    <img
-                        src={logo}
-                        className="ml-auto mr-auto App-logo mt-10"
-                        alt="logo"
-                    />
-                    <label className="font-bold">Filter</label>
-                    <input
-                        className="min-w-[90%] mr-[300px] md:min-w-[185px] border
+                    <div className="mt-20">
+                        <label className="font-bold">Filter</label>
+                        <input
+                            className="min-w-[90%] mr-[300px] md:min-w-[185px] border
                         border-gray-300 text-gray-900
                         text-sm rounded-lg focus:ring-blue-500
                         focus:border-blue-500 block pl-3 p-2.5
@@ -138,10 +134,11 @@ export default function ProductPage() {
                         dark:border-gray-600
                         dark:placeholder-gray-400 dark:text-sky-500
                         dark:focus:ring-blue-500
-                        dark:focus:border-blue-500"
-                        onChange={handleSearchChange}
-                        value={searchTerm}
-                    />
+                        dark:focus:border-blue-500 mt-1"
+                            onChange={handleSearchChange}
+                            value={searchTerm}
+                        />
+                    </div>
                     <div className="mt-3 text-center">
                         <Link
                             className="font-bold text-sky-400 hover:text-sky-900"
