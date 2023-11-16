@@ -1,3 +1,4 @@
+import React from 'react'
 import ProductPage from './components/products/ProductPage'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 

@@ -1,3 +1,4 @@
+import React from 'react'
 import { Link } from 'react-router-dom'
 
 export default function ShoppingCart({
@@ -6,9 +7,11 @@ export default function ShoppingCart({
     cartTotalPrice,
     isNavOpen,
     size,
-}) {
+}: any) {
     const { width } = size
-    const smallerTable = isNavOpen ? 'ml-24 mr-24 md:ml-24 md:mr-12' : 'w-[70%]'
+    const smallerTable = isNavOpen
+        ? 'ml-20 mr-20 md:ml-24 md:mr-12'
+        : 'ml-auto mr-auto w-[70%]'
 
     const smallerWidth = width < 900 ? 'text-xs' : 'text-sm'
 
@@ -18,7 +21,7 @@ export default function ShoppingCart({
                 Shopping Cart
             </h1>
             <div
-                className={`${smallerTable} ml-auto mr-auto relative overflow-x-auto mb-10 rounded-2xl`}
+                className={`${smallerTable} relative overflow-x-auto mb-10 rounded-2xl`}
             >
                 {cart.length ? (
                     <table
@@ -49,8 +52,12 @@ export default function ShoppingCart({
                         </thead>
                         <tbody className="flex-1 sm:flex-none">
                             {cart
-                                ?.sort((a, b) => a.title.localeCompare(b.title))
-                                .map((product, i) => {
+                                ?.sort((a: any, b: any) =>
+                                    a.title.localeCompare(b.title)
+                                )
+                                .map((product: any, i: number) => {
+                                    // @ts-ignore
+                                    // @ts-ignore
                                     return (
                                         <tr
                                             key={i}
@@ -74,7 +81,7 @@ export default function ShoppingCart({
                                                     </td>
                                                 </Link>
                                                 <Link
-                                                    className="pl-4 -ml-px text-sky-500
+                                                    className="sm:pl-4 -ml-px text-sky-500
                                                     border-current font-semibold dark:text-sky-400 hover:text-sky-900"
                                                     to={`/details/${product.listId}`}
                                                 >
@@ -100,8 +107,9 @@ export default function ShoppingCart({
                                                     text-white bg-red-700 hover:bg-red-800
                                                     focus:ring-4 focus:ring-red-300
                                                     font-medium rounded-lg text-sm
-                                                    px-1 py-1 mr-2 mb-2 dark:bg-red-600
+                                                    px-1 py-1 dark:bg-red-600 mb-3
                                                     dark:hover:bg-red-700 dark:focus:ring-red-900"
+                                                    //@ts-ignore
                                                     idx={product.id}
                                                     onClick={removeFromCart}
                                                 >

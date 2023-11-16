@@ -4,22 +4,22 @@ import { useFetch } from '../../hooks/useFetch'
 import { Link, Route, Routes, useLocation } from 'react-router-dom'
 import ProductDetails from './ProductDetails'
 import ShoppingCart from '../cart/ShoppingCart'
-import logo from '../../logo.svg'
 import cartSvg from '../../shopping-cart-outline-svgrepo-com.svg'
 import { useWindowSize } from '../../hooks/useWindowSize'
 import Loader from '../Loader'
+import React from 'react'
 
 export default function ProductPage() {
     const [searchTerm, setSearchTerm] = useState('')
     const [cart, setCart] = useState(() => {
-        return JSON.parse(localStorage.getItem('cart')) ?? []
+        return JSON.parse(localStorage.getItem('cart') as any) ?? []
     })
-    const navMenu = useRef(null)
+    const navMenu: any = useRef(null)
     const [quantity, setQuantity] = useState(1)
     const [isNavOpen, setIsNavOpen] = useState(true)
     const [cartTotalPrice, setCartTotalPrice] = useState(0)
     const location = useLocation()
-    const { data, status } = useFetch('https://dummyjson.com/products')
+    const { data, status }: any = useFetch('https://dummyjson.com/products')
 
     const size = useWindowSize()
 
@@ -28,19 +28,19 @@ export default function ProductPage() {
         ? 'opacity-100 relative visible'
         : 'opacity-0 invisible'
 
-    const handleSearchChange = (e) => {
-        setSearchTerm(e.target.value)
+    const handleSearchChange = (e: any) => {
+        setSearchTerm(e?.target?.value)
     }
 
-    const removeFromCart = (e) => {
+    const removeFromCart = (e: any) => {
         let newCart = cart.filter(
-            (c) => c.id !== parseInt(e.target.attributes[1].value, 10)
+            (c: any) => c.id !== parseInt(e.target.attributes[1].value, 10)
         )
         localStorage.setItem('cart', JSON.stringify(newCart))
         setCart(newCart)
     }
 
-    const filteredProducts = data?.products?.filter((prod) => {
+    const filteredProducts = data?.products?.filter((prod: any) => {
         if (searchTerm === '') return true
         return prod.title.toLowerCase().startsWith(searchTerm.toLowerCase())
     })
@@ -48,7 +48,7 @@ export default function ProductPage() {
     const toggleMenu = () => {
         setIsNavOpen(!isNavOpen)
         if (!isNavOpen) {
-            navMenu.current.scrollIntoView({
+            navMenu?.current?.scrollIntoView({
                 block: 'end',
                 inline: 'nearest',
             })
@@ -58,7 +58,7 @@ export default function ProductPage() {
     useEffect(() => {
         if (cart) {
             let cartTotal = 0
-            cart.forEach((c) => {
+            cart.forEach((c: any) => {
                 cartTotal += c.price
             })
             setCartTotalPrice(cartTotal)
