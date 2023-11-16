@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react'
+import { EffectCallback, useEffect, useState } from 'react'
 import getData from '../utils/getData'
-export function useFetch(url) {
+export function useFetch(url: any) {
     const [data, setData] = useState()
     const [error, setError] = useState(null)
     const [status, setStatus] = useState('idle')
-    useEffect(() => {
+    useEffect((): any => {
         let doUpdate = true
         setStatus('loading')
         setData(undefined)
