@@ -1,3 +1,5 @@
+import React from 'react'
+
 export default function Loader() {
     return (
         <div className="mt-12" role="status">
@@ -17,7 +19,7 @@ export default function Loader() {
                     fill="currentColor"
                 />
             </svg>
-            <span class="sr-only">Loading...</span>
+            <span className="sr-only">Loading...</span>
         </div>
     )
 }

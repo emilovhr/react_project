@@ -1,11 +1,12 @@
+import React from 'react'
 import { Link } from 'react-router-dom'
-export default function ProductList({ products }) {
+export default function ProductList({ products }: any) {
     return (
         <div className="mt-3 ml-3">
             <h1 className="font-bold mb-4">Product List</h1>
             <div className="sideNavChild overflow-x-scroll max-h-[150px] md:max-h-[450px]">
                 <ul className="productList">
-                    {products?.map((product, i) => {
+                    {products?.map((product: any, i: number) => {
                         return (
                             <li key={i}>
                                 <Link
