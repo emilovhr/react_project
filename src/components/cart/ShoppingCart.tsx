@@ -56,8 +56,6 @@ export default function ShoppingCart({
                                     a.title.localeCompare(b.title)
                                 )
                                 .map((product: any, i: number) => {
-                                    // @ts-ignore
-                                    // @ts-ignore
                                     return (
                                         <tr
                                             key={i}
