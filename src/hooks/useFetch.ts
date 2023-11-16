@@ -4,7 +4,7 @@ export function useFetch(url: any) {
     const [data, setData] = useState()
     const [error, setError] = useState(null)
     const [status, setStatus] = useState('idle')
-    useEffect((): any => {
+    useEffect((): ReturnType<EffectCallback> => {
         let doUpdate = true
         setStatus('loading')
         setData(undefined)
@@ -22,7 +22,9 @@ export function useFetch(url: any) {
                     setStatus('error')
                 }
             })
-        return () => (doUpdate = false)
+        return (): void => {
+            doUpdate = false
+        }
     }, [url])
     return { data, status, error }
 }
