@@ -45,6 +45,8 @@ export default function ProductPage() {
         return prod.title.toLowerCase().startsWith(searchTerm.toLowerCase())
     })
 
+    const [newProducts, setNewProducts] = useState(filteredProducts)
+
     const toggleMenu = () => {
         setIsNavOpen(!isNavOpen)
         if (!isNavOpen) {
@@ -159,7 +161,11 @@ export default function ProductPage() {
                     {status === 'loading' ? (
                         <Loader />
                     ) : (
-                        <ProductList products={filteredProducts} />
+                        <ProductList
+                            products={filteredProducts}
+                            setNewProducts={setNewProducts}
+                            newProducts={newProducts}
+                        />
                     )}
                 </div>
                 <div className={`${smallerDetails}`}>

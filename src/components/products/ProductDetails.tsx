@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import Loader from '../Loader'
+import React from 'react'
 
 export default function ProductDetails({
     products,
@@ -10,15 +11,15 @@ export default function ProductDetails({
     setQuantity,
     isNavOpen,
     status,
-}) {
+}: any) {
     const { id } = useParams()
-    const [product, setProduct] = useState(null)
+    const [product, setProduct] = useState<any>(null)
 
     const navClosedStyle = isNavOpen ? '' : 'mt-8'
 
     useEffect(() => {
-        const prod = products?.find((p) => {
-            return p.id === parseInt(id, 10)
+        const prod = products?.find((p: { id: number }) => {
+            return p.id === parseInt(id as string, 10)
         })
         if (products?.length && prod) {
             setProduct(prod)
