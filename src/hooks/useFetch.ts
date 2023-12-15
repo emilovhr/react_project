@@ -1,7 +1,8 @@
 import { EffectCallback, useEffect, useState } from 'react'
 import getData from '../utils/getData'
-export function useFetch(url: any) {
-    const [data, setData] = useState()
+import { productApi } from '../types/types'
+export function useFetch(url: string) {
+    const [data, setData] = useState<productApi>()
     const [error, setError] = useState(null)
     const [status, setStatus] = useState('idle')
     useEffect((): ReturnType<EffectCallback> => {

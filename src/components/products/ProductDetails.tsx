@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import Loader from '../Loader'
 import React from 'react'
+import { product, ProductDetailsType } from '../../types/types'
 
 export default function ProductDetails({
     products,
@@ -11,9 +12,9 @@ export default function ProductDetails({
     setQuantity,
     isNavOpen,
     status,
-}: any) {
+}: ProductDetailsType) {
     const { id } = useParams()
-    const [product, setProduct] = useState<any>(null)
+    const [product, setProduct] = useState<product | null>(null)
 
     const navClosedStyle = isNavOpen ? '' : 'mt-8'
 
@@ -84,7 +85,8 @@ export default function ProductDetails({
                                                         value={quantity}
                                                         onChange={(e) => {
                                                             setQuantity(
-                                                                e.target.value
+                                                                e.target
+                                                                    .value as unknown as number
                                                             )
                                                         }}
                                                     />

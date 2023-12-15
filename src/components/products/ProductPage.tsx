@@ -8,19 +8,22 @@ import cartSvg from '../../shopping-cart-outline-svgrepo-com.svg'
 import { useWindowSize } from '../../hooks/useWindowSize'
 import Loader from '../Loader'
 import React from 'react'
+import { fetchType, product } from '../../types/types'
 
 export default function ProductPage() {
     const [searchTerm, setSearchTerm] = useState('')
-    const [cart, setCart] = useState(() => {
-        return JSON.parse(localStorage.getItem('cart') as any) ?? []
+    const [cart, setCart] = useState<product[]>(() => {
+        return JSON.parse(localStorage.getItem('cart') as string) ?? []
     })
-    const navMenu: any = useRef(null)
+    const navMenu: React.MutableRefObject<any> = useRef(null)
     const [quantity, setQuantity] = useState(1)
     const [isNavOpen, setIsNavOpen] = useState(true)
     const [cartTotalPrice, setCartTotalPrice] = useState(0)
     const location = useLocation()
-    const { data, status }: any = useFetch('https://dummyjson.com/products')
-
+    const { data, status }: fetchType = useFetch(
+        'https://dummyjson.com/products'
+    )
+    console.log(data)
     const size = useWindowSize()
 
     const smallerDetails = isNavOpen ? 'md:ml-64 md:mr-0' : 'mr-auto'
@@ -28,24 +31,23 @@ export default function ProductPage() {
         ? 'opacity-100 relative visible'
         : 'opacity-0 invisible'
 
-    const handleSearchChange = (e: any) => {
+    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(e?.target?.value)
     }
 
-    const removeFromCart = (e: any) => {
+    const removeFromCart = (e: React.MouseEvent<HTMLButtonElement>) => {
         let newCart = cart.filter(
-            (c: any) => c.id !== parseInt(e.target.attributes[1].value, 10)
+            (c: product) =>
+                c.id !== parseInt(e.currentTarget.attributes[1].value, 10)
         )
         localStorage.setItem('cart', JSON.stringify(newCart))
         setCart(newCart)
     }
 
-    const filteredProducts = data?.products?.filter((prod: any) => {
+    const filteredProducts = data?.products?.filter((prod: product) => {
         if (searchTerm === '') return true
         return prod.title.toLowerCase().startsWith(searchTerm.toLowerCase())
     })
-
-    const [newProducts, setNewProducts] = useState(filteredProducts)
 
     const toggleMenu = () => {
         setIsNavOpen(!isNavOpen)
@@ -60,7 +62,7 @@ export default function ProductPage() {
     useEffect(() => {
         if (cart) {
             let cartTotal = 0
-            cart.forEach((c: any) => {
+            cart.forEach((c: product) => {
                 cartTotal += c.price
             })
             setCartTotalPrice(cartTotal)
@@ -161,11 +163,7 @@ export default function ProductPage() {
                     {status === 'loading' ? (
                         <Loader />
                     ) : (
-                        <ProductList
-                            products={filteredProducts}
-                            setNewProducts={setNewProducts}
-                            newProducts={newProducts}
-                        />
+                        <ProductList products={filteredProducts} />
                     )}
                 </div>
                 <div className={`${smallerDetails}`}>

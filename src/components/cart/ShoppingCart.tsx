@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { ShoppingCartType, product } from '../../types/types'
 
 export default function ShoppingCart({
     cart,
@@ -7,7 +8,7 @@ export default function ShoppingCart({
     cartTotalPrice,
     isNavOpen,
     size,
-}: any) {
+}: ShoppingCartType) {
     const { width } = size
     const smallerTable = isNavOpen
         ? 'ml-20 mr-20 md:ml-24 md:mr-12'
@@ -52,10 +53,10 @@ export default function ShoppingCart({
                         </thead>
                         <tbody className="flex-1 sm:flex-none">
                             {cart
-                                ?.sort((a: any, b: any) =>
+                                ?.sort((a: product, b: product) =>
                                     a.title.localeCompare(b.title)
                                 )
-                                .map((product: any, i: number) => {
+                                .map((product: product, i: number) => {
                                     return (
                                         <tr
                                             key={i}
