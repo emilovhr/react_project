@@ -1,7 +1,7 @@
 import ProductList from './ProductList'
 import { useEffect, useState, useRef } from 'react'
 import { useFetch } from '../../hooks/useFetch'
-import { Link, Route, Routes, useLocation } from 'react-router-dom'
+import { Link, Route, Routes } from 'react-router-dom'
 import ProductDetails from './ProductDetails'
 import ShoppingCart from '../cart/ShoppingCart'
 import cartSvg from '../../shopping-cart-outline-svgrepo-com.svg'
@@ -19,7 +19,6 @@ export default function ProductPage() {
     const [quantity, setQuantity] = useState(1)
     const [isNavOpen, setIsNavOpen] = useState(true)
     const [cartTotalPrice, setCartTotalPrice] = useState(0)
-    const location = useLocation()
     const { data, status }: fetchType = useFetch(
         'https://dummyjson.com/products'
     )
@@ -50,8 +49,9 @@ export default function ProductPage() {
     })
 
     const toggleMenu = () => {
-        setIsNavOpen(!isNavOpen)
-        if (!isNavOpen) {
+        const toggleNavOpen = !isNavOpen
+        setIsNavOpen(toggleNavOpen)
+        if (toggleNavOpen) {
             navMenu?.current?.scrollIntoView({
                 block: 'end',
                 inline: 'nearest',
@@ -61,13 +61,9 @@ export default function ProductPage() {
 
     useEffect(() => {
         if (cart) {
-            let cartTotal = 0
-            cart.forEach((c: product) => {
-                cartTotal += c.price
-            })
-            setCartTotalPrice(cartTotal)
+            setCartTotalPrice(cart.reduce((sum, c) => sum + c.price, 0))
         }
-    }, [cart, location])
+    }, [cart])
 
     return (
         <>

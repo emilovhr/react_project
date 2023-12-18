@@ -18,6 +18,20 @@ export default function ProductDetails({
 
     const navClosedStyle = isNavOpen ? '' : 'mt-8'
 
+    function addToCart() {
+        let newCart = [...cart]
+        for (let i = 1; i <= quantity; i++) {
+            const newProduct = {
+                ...product,
+            }
+            newProduct.listId = newProduct.id
+            newProduct.id = Math.floor(Math.random() * 100000)
+            newCart.push(newProduct as product)
+        }
+        localStorage.setItem('cart', JSON.stringify(newCart))
+        setCart(newCart)
+    }
+
     useEffect(() => {
         const prod = products?.find((p: { id: number }) => {
             return p.id === parseInt(id as string, 10)
@@ -101,38 +115,8 @@ export default function ProductDetails({
                                                         hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100
                                                         dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700
                                                         dark:hover:text-gray-300"
-                                                        onClick={() => {
-                                                            let newCart = [
-                                                                ...cart,
-                                                            ]
-                                                            for (
-                                                                let i = 1;
-                                                                i <= quantity;
-                                                                i++
-                                                            ) {
-                                                                const newProduct =
-                                                                    {
-                                                                        ...product,
-                                                                    }
-                                                                newProduct.listId =
-                                                                    newProduct.id
-                                                                newProduct.id =
-                                                                    Math.floor(
-                                                                        Math.random() *
-                                                                            100000
-                                                                    )
-                                                                newCart.push(
-                                                                    newProduct
-                                                                )
-                                                            }
-                                                            localStorage.setItem(
-                                                                'cart',
-                                                                JSON.stringify(
-                                                                    newCart
-                                                                )
-                                                            )
-                                                            setCart(newCart)
-                                                        }}
+                                                        // TODO 00 put this in a function
+                                                        onClick={addToCart}
                                                     >
                                                         Add to Cart
                                                     </button>
