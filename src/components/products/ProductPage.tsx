@@ -22,7 +22,7 @@ export default function ProductPage() {
     const { data, status }: fetchType = useFetch(
         'https://dummyjson.com/products'
     )
-    console.log(data)
+
     const size = useWindowSize()
 
     const smallerDetails = isNavOpen ? 'md:ml-64 md:mr-0' : 'mr-auto'
