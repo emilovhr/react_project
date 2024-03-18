@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { productApi, product } from '../../types/types'
+
 export default function ProductList({ products }: productApi) {
     return (
         <div className="mt-3 ml-3">
